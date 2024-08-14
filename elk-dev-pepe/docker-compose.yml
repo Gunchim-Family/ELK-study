@@ -72,6 +72,8 @@ services:
       - 5044:5044
     volumes:
       - ./volumes/logstash/load:/usr/share/logstash/load
+      - ./volumes/logstash/load/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml
+      - ../spring-logs:/usr/share/logstash/spring-logs
     networks:
       - elk
     depends_on:
