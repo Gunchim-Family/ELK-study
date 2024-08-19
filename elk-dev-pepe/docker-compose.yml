@@ -97,6 +97,19 @@ services:
     networks:
       - elk
 
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.14.2
+    container_name: filebeat
+    volumes:
+      - ./volumes/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+      - ./volumes/filebeat/logs:/usr/share/filebeat/logs
+      - ../spring-logs:/usr/share/filebeat/spring-logs
+
+    networks:
+      - elk
+    depends_on:
+      - es01
+
 networks:
   elk:
     driver: bridge
